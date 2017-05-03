@@ -6,10 +6,23 @@ import turtle
 from random import randint
 
 
+screen = turtle.Screen()
+image = "snowman.gif"
+screen.bgpic(image)
+
+def drawSnow(wrongCount):
+
+
+    t = turtle.Pen()
+    t.speed(2) # draw fast !
+    t.pendown() # right s ide of face
+    t.circle(20)
+
+
 isGameFinished = False
 chosenLetters = []
 totalAnswers = 0
-wrongAnswers = 0
+wrongAnswers = 1
 wrongLimit = 7
 
 def selectCityName():
@@ -21,7 +34,7 @@ def selectCityName():
     city = data[randomIndex]
     
     # Comment out for debug!
-    #print(city[:-1])
+    print(city[:-1])
     return city[:-1]
 
 def examineAnswer(answer, word):
@@ -74,7 +87,7 @@ def game():
         answer = input("Enter a letter: ")
         examineAnswer(answer, chosenCity)
         isGameFinished = userPrompt(chosenLetters, chosenCity, False)
-        if wrongAnswers > wrongLimit:
+        if wrongAnswers >= wrongLimit:
             isGameFinished = True
         if(isGameFinished):
             print("You made "+str(totalAnswers)+" guess!")
